@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "Bash(npm run *)",
+      "Bash(npm test *)",
+      "Bash(npx expo *)",
+      "Bash(npx tsc *)",
+      "Bash(npx jest *)",
+      "Bash(npx supabase start)",
+      "Bash(npx supabase status)",
+      "Bash(npx supabase db reset)",
+      "Bash(npx supabase migration new *)",
+      "Bash(npx supabase gen types *)",
+      "Bash(git status *)",
+      "Bash(git diff *)",
+      "Bash(git log *)",
+      "PowerShell(npm run *)",
+      "PowerShell(npx expo *)",
+      "PowerShell(git status *)",
+      "PowerShell(git diff *)"
+    ],
+    "ask": [
+      "Bash(npx supabase db push *)",
+      "Bash(npx supabase functions deploy *)",
+      "Bash(eas *)",
+      "Bash(npx eas *)",
+      "Bash(git push *)"
+    ],
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(./supabase/.env*)"
+    ]
+  },
+  "enabledPlugins": {
+    "expo@claude-plugins-official": true,
+    "supabase@claude-plugins-official": true,
+    "typescript-lsp@claude-plugins-official": true,
+    "frontend-design@claude-plugins-official": true,
+    "security-guidance@claude-plugins-official": true,
+    "context7@claude-plugins-official": true
+  }
+}
