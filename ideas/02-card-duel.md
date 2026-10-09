@@ -53,3 +53,6 @@ Ein Daily-Mini-Quiz zur Kategorie ("Höher oder tiefer: Wer ist schneller?") bri
 
 ## Erste Einschätzung
 Mehr "Ich will morgen wiederkommen" als Idee 01: Sammeln plus Pack-Öffnen plus Besitz sind starke Motivatoren. Dazu ein klares Alleinstellungsmerkmal (eigene Nische wählen) und gute Teilbarkeit (Karten-Screenshots, absurde Duelle). Größte Arbeit: Content-Pipeline und Balancing.
+
+## Passende Bausteine
+- [Duell-Intro](bausteine/duell-intro.md): Charakter am Tisch mit Face-off-Emote vor dem Duell

@@ -52,3 +52,6 @@ Ein kurzes tägliches Ritual (2–5 Minuten), das man mit Freunden teilt. Es kom
 - Name und Branding
 - Drop global synchron oder pro Zeitzone? (Tendenz: pro Zeitzone, gleicher Seed pro `daily_date`)
 - Altersfreigabe / Mindestalter (UGC-Moderation)
+
+## Passende Bausteine
+- [Duell-Intro](bausteine/duell-intro.md): nur im `duel`-Modus sinnvoll

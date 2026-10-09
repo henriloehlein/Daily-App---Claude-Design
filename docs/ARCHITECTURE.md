@@ -1,4 +1,34 @@
-# Architektur
+# Architektur (Entwurf für Idee 01 "Daily Challenges")
+
+> Gilt nur, falls Idee 01 gebaut wird. Bei einer anderen Idee wird diese Datei neu geschrieben. Wiederverwendbare Muster (Server-Scoring, Seeds, Game-Contract) lassen sich trotzdem übertragen.
+
+## Code-Struktur
+```
+app/                 Expo Router Screens: (auth)/, (tabs)/today, friends, profile
+src/games/<id>/      Ein Ordner pro Spiel (siehe Game-Contract)
+src/games/registry.ts  Liste aller Spiele, einzige Stelle zum Registrieren
+src/features/        streaks/, scoring/, friends/, feed/, notifications/
+src/lib/             supabase client, database.types.ts, seed/rng utils
+src/ui/              Design-System (Tokens, Komponenten)
+supabase/migrations/ SQL-Migrationen (nie bestehende ändern, nur neue anlegen)
+supabase/functions/  Edge Functions (submit-result, daily-drop, ...)
+content/             Kuratierte Inhalte (Prompts, Fragen) als JSON
+```
+
+## Game-Contract
+Jedes Spiel ist ein Modul `src/games/<id>/` mit:
+- `definition.ts`: `id`, `name`, `category` (`score` | `creative` | `social` | `duel`), `durationSec`, `scoring`
+- `generate.ts`: `generate(seed: string) => Puzzle`. **Deterministisch.** Gleicher Seed bedeutet gleiches Rätsel für alle.
+- `validate.ts`: `validate(puzzle, submission) => { valid, rawScore }`. Pure Funktion, läuft auch in der Edge Function.
+- `Game.tsx`: UI. Bekommt `puzzle`, gibt über `onSubmit(submission)` das Ergebnis zurück und schreibt nie selbst in die DB.
+- `Result.tsx`: Vergleichsansicht · `__tests__/`: Determinismus von generate und validate
+
+Neue Spiele mit dem Skill `/new-game` anlegen. Normalisierte Scores 0–100. Ergebnisse von Freunden sind erst lesbar, wenn der eigene Eintrag existiert. Der Daily-Tag kommt aus der Zeitzone des Users (`daily_date`).
+
+## Befehle (nach dem Scaffold)
+- `npx expo start` · `npm run typecheck` / `npm run lint` / `npm test` vor jedem "fertig"
+- `npx supabase start` / `npx supabase db reset`
+- `npx supabase gen types typescript --local > src/lib/database.types.ts` nach jeder Migration
 
 ## Datenmodell (Entwurf)
 ```
